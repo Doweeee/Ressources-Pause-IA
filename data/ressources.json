@@ -1,0 +1,123 @@
+[
+  {
+    "id": "pauseia-fr",
+    "title": "Pause IA",
+    "description": "Mouvement français qui appelle à un moratoire sur le développement des IA générales les plus puissantes.",
+    "url": "https://pauseia.fr/",
+    "lang": "fr",
+    "zone": "plaine",
+    "logo": "assets/images/logos/pauseia.svg"
+  },
+  {
+    "id": "pauseai-global",
+    "title": "PauseAI Global",
+    "description": "Organisation mère internationale du mouvement Pause AI, voix mondiale de la cause.",
+    "url": "https://pauseai.info/",
+    "lang": "en",
+    "zone": "plaine"
+  },
+  {
+    "id": "controlai",
+    "title": "ControlAI",
+    "description": "Organisation britannique militant pour une régulation contraignante des IA les plus puissantes.",
+    "url": "https://controlai.com/",
+    "lang": "en",
+    "zone": "plaine"
+  },
+  {
+    "id": "fli",
+    "title": "Future of Life Institute",
+    "description": "Institut de recherche et de plaidoyer sur les risques existentiels, à l'origine de la lettre ouverte de mars 2023.",
+    "url": "https://futureoflife.org/",
+    "lang": "en",
+    "zone": "plaine"
+  },
+  {
+    "id": "cesia",
+    "title": "CeSIA",
+    "description": "Centre français pour la sécurité de l'IA : recherche et enseignement sur la prévention des risques majeurs.",
+    "url": "https://www.securite-ia.fr/",
+    "lang": "fr",
+    "zone": "village"
+  },
+  {
+    "id": "cais",
+    "title": "CAIS",
+    "description": "Center for AI Safety : recherche académique sur les risques catastrophiques liés à l'IA.",
+    "url": "https://www.safe.ai/",
+    "lang": "en",
+    "zone": "village"
+  },
+  {
+    "id": "miri",
+    "title": "MIRI",
+    "description": "Machine Intelligence Research Institute : pionnier de la recherche sur l'alignement et les risques existentiels.",
+    "url": "https://intelligence.org/",
+    "lang": "en",
+    "zone": "village"
+  },
+  {
+    "id": "pauseia-newsletter",
+    "title": "Newsletter Pause IA",
+    "description": "Actualités et nouvelles du mouvement français pour une pause sur l'IA.",
+    "url": "https://pauseia.fr/fr/newsletters",
+    "lang": "fr",
+    "zone": "monts"
+  },
+  {
+    "id": "transformer",
+    "title": "Transformer",
+    "description": "Synthèse hebdomadaire de l'actualité de l'IA, sourcée et précise.",
+    "url": "https://www.transformernews.ai/",
+    "lang": "en",
+    "zone": "monts"
+  },
+  {
+    "id": "controlai-news",
+    "title": "ControlAI News",
+    "description": "Newsletter de ControlAI sur les développements liés à la régulation et à la sécurité de l'IA.",
+    "url": "https://controlai.news/",
+    "lang": "en",
+    "zone": "monts"
+  },
+  {
+    "id": "situational-awareness",
+    "title": "Situational Awareness",
+    "description": "Prévisions de Leopold Aschenbrenner sur l'AGI et la superintelligence d'ici 2027-2030 (juin 2024).",
+    "url": "https://situational-awareness.ai/",
+    "lang": "en",
+    "zone": "avant-poste"
+  },
+  {
+    "id": "ai-2027",
+    "title": "AI 2027",
+    "description": "Scénario d'impact d'IAs surhumaines sur la décennie, par Daniel Kokotajlo et al. (avril 2025).",
+    "url": "https://ai-2027.com/",
+    "lang": "en",
+    "zone": "avant-poste"
+  },
+  {
+    "id": "intelligence-curse",
+    "title": "The Intelligence Curse",
+    "description": "Essai sur la perte graduelle du pouvoir humain, par Luke Drago et Rudolf Laine (avril 2025).",
+    "url": "https://intelligence-curse.ai/",
+    "lang": "en",
+    "zone": "avant-poste"
+  },
+  {
+    "id": "aisafety-map",
+    "title": "AI Safety Map",
+    "description": "Cartographie interactive des acteurs de la sécurité de l'IA dans le monde.",
+    "url": "https://www.aisafety.com/map",
+    "lang": "en",
+    "zone": "ile"
+  },
+  {
+    "id": "aisafety-info",
+    "title": "AISafety.info",
+    "description": "FAQ exhaustive sur la sécurité de l'IA : centaines de réponses sourcées et accessibles.",
+    "url": "https://aisafety.info/",
+    "lang": "en",
+    "zone": "ile"
+  }
+]

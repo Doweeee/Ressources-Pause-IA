@@ -1,0 +1,239 @@
+/* ============================================================
+   MAP.CSS — Styles spécifiques à la carte interactive
+   Viewport, stage, zones SVG, label de survol
+   ============================================================ */
+
+/* La page de la carte n'a pas de scroll (carte plein écran). */
+body { overflow: hidden; }
+
+/* ----- Viewport : la zone visible (= l'écran entier) -----
+   C'est CE conteneur qui ne bouge pas. Panzoom déplace .map-stage
+   à l'intérieur. */
+.map-viewport {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  cursor: grab;
+}
+.map-viewport:active { cursor: grabbing; }
+
+/* ----- Stage : le conteneur que Panzoom manipule -----
+   La transform initiale (centrage) est appliquée par le script
+   inline dans le <head> de index.html, AVANT le premier rendu.
+   Pas de visibility: hidden ici, plus besoin. */
+.map-stage {
+  width: 2048px;       /* dimensions natives de l'image upscalée */
+  height: 1152px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+
+/* L'image de la carte */
+.map-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none; /* l'image ne capture pas la souris, le SVG si */
+}
+
+/* Le SVG des zones se superpose parfaitement à l'image. */
+.map-zones {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ----- Style des zones interactives -----
+   IMPORTANT : on veut UNIQUEMENT un contour brillant au survol.
+   Pas de remplissage. La forme s'illumine par ses bords. */
+.zone {
+  fill: transparent !important;
+  stroke: transparent !important;
+  stroke-width: 0;
+  outline: none !important;
+  cursor: pointer;
+  transition: stroke 0.25s ease, stroke-width 0.25s ease;
+}
+.zone:hover,
+.zone:focus,
+.zone:active {
+  fill: transparent !important;
+  stroke: var(--orange) !important;
+  stroke-width: 4 !important;
+  outline: none !important;
+  /* Léger glow autour du trait pour le rendre plus présent */
+  filter: drop-shadow(0 0 6px var(--orange));
+}
+
+/* ============================================================
+   LABELS STATIQUES DES ZONES
+   Toujours visibles, posés à des positions fixes en pixels-image.
+   Ils suivent le pan/zoom de la carte (dans .map-stage).
+   ============================================================ */
+.zone-labels {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.zone-static-label {
+  position: absolute;
+  font-family: 'Saira Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(247, 147, 29, 0.85);
+  text-shadow:
+    0 0 12px rgba(0, 0, 0, 0.9),
+    0 0 6px rgba(0, 0, 0, 0.9),
+    0 2px 4px rgba(0, 0, 0, 1);
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  /* Padding nécessaire pour que le fond noir ait une marge autour du texte */
+  padding: 6px 12px;
+  border-radius: 3px;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  border: 1px solid transparent;
+  /* Le scale inverse est appliqué par JS dans apply() pour garder
+     une taille constante au zoom. translate(-50%, -50%) recentre
+     le label sur son point d'ancrage (left/top dans le HTML). */
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+}
+.zone-static-label.active {
+  background: rgba(5, 6, 8, 0.92);
+  border-color: var(--orange);
+  color: var(--orange);
+  box-shadow: 0 0 16px rgba(247, 147, 29, 0.4);
+}
+
+/* ============================================================
+   CERCLES DES SOURCES
+   Cercles blancs (50px) avec logo couleur dedans, posés sur la
+   carte. Au survol : agrandissement + tooltip à côté.
+   ============================================================ */
+.map-sources {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* on autorise les clics seulement sur les enfants */
+}
+
+.source-marker {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;  /* centre le cercle sur ses coordonnées */
+  margin-top: -25px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 2px rgba(247, 147, 29, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.source-marker:hover {
+  transform: scale(1.25);
+  box-shadow:
+    0 0 0 3px var(--orange),
+    0 0 16px rgba(247, 147, 29, 0.7),
+    0 6px 16px rgba(0, 0, 0, 0.6);
+  z-index: 20;
+}
+.source-marker img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* Fallback quand pas de logo : initiales sur fond gris */
+.source-marker-fallback {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  color: #050608;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   BULLE D'INFO DES SOURCES
+   Affichée à côté du cercle survolé (statique, ne suit pas la souris).
+   ============================================================ */
+.source-tooltip {
+  position: fixed;
+  z-index: 100;
+  max-width: 280px;
+  padding: 12px 16px;
+  background: rgba(5, 6, 8, 0.96);
+  border: 1px solid var(--orange);
+  border-radius: 4px;
+  box-shadow: 0 0 24px rgba(247, 147, 29, 0.35);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  pointer-events: none;
+}
+.source-tooltip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.source-tooltip-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.source-tooltip-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+.source-tooltip-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--orange);
+  letter-spacing: 0.5px;
+}
+.source-tooltip-desc {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+/* ============================================================
+   INDICATION DISCRÈTE EN BAS
+   ============================================================ */
+.hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Saira Condensed', sans-serif;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 10;
+}

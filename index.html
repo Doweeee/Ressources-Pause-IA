@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pause IA — Carte</title>
+
+  <!-- Polices Google Fonts (charte PauseAI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto+Slab:wght@300;700&family=Saira+Condensed:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Feuilles de style séparées -->
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/map.css" />
+
+  <!-- ============================================================
+       SCRIPT BLOQUANT : calcule la transform initiale du stage
+       AVANT que le HTML soit rendu. Injecte une balise <style>
+       qui place le stage exactement au bon endroit dès la première
+       frame. Aucun "flash" possible.
+       ============================================================ -->
+  <script>
+    (function () {
+      var MAP_W = 2048, MAP_H = 1152;
+      var vw = window.innerWidth;
+      var vh = window.innerHeight;
+      var margin = 0.92;
+      var scale = Math.min((vw / MAP_W) * margin, (vh / MAP_H) * margin);
+      var x = (vw - MAP_W * scale) / 2;
+      var y = (vh - MAP_H * scale) / 2;
+      // On expose ces valeurs pour map.js (qui les utilisera pour Panzoom)
+      window.__mapInitialFit = { scale: scale, x: x, y: y };
+      // Et on injecte la transform en CSS pour qu'elle s'applique au rendu initial
+      var s = document.createElement('style');
+      s.textContent =
+        '.map-stage{transform:translate(' + x + 'px,' + y + 'px) scale(' + scale + ');' +
+        'transform-origin:0 0;visibility:visible !important}';
+      document.head.appendChild(s);
+    })();
+  </script>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION : barre supérieure commune à toutes les pages
+       ============================================================ -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <span>PAUSE</span><span class="orange">IA</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="vulgarisation.html">Comprendre</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="about.html">À propos</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       CARTE INTERACTIVE
+       - .map-viewport : zone visible plein écran
+       - .map-stage : conteneur que Panzoom manipule (image + SVG ensemble)
+       - <img> : la carte de fond
+       - <svg> : les polygones de zones, superposés à l'image
+       ============================================================ -->
+  <div class="map-viewport" id="mapViewport">
+    <div class="map-stage" id="mapStage">
+
+      <img
+        src="assets/images/map.png"
+        alt="Carte des ressources Pause IA"
+        class="map-image"
+      />
+
+      <!-- Le viewBox correspond aux dimensions natives de l'image (2048×1152).
+           Toutes les coordonnées des polygones sont exprimées dans ce repère. -->
+      <svg
+        class="map-zones"
+        viewBox="0 0 2048 1152"
+        preserveAspectRatio="xMidYMid meet"
+      >
+
+        <!-- ============================================================
+             LES 8 ZONES THÉMATIQUES
+             Coordonnées en pixels-image (repère 2048×1152).
+             Tracées en suivant les contours visuels de la carte :
+             côtes, lignes de crête, lisière de forêt, rivières.
+             À ajuster zone par zone si besoin.
+             ============================================================ -->
+
+         <!-- Forêt des blogs -->
+        <polygon
+          class="zone"
+          data-name="Forêt des blogs"
+          fill="transparent"
+          stroke="none"
+          points="
+            505,200
+            550,237
+            614,303
+            669,368
+            745,379
+            782,399
+            802,455
+            793,492
+            770,528
+            762,577
+            749,623
+            720,640
+            677,635
+            638,656
+            556,701
+            477,725
+            430,729
+            388,724
+            350,711
+            330,685
+            298,645
+            218,613
+            173,564
+            150,485
+            169,377
+            234,311
+            312,260
+            392,237
+            441,205
+            474,195
+            505,200
+          "
+        />
+
+         <!-- Monts des newsletters -->
+        <polygon
+          class="zone"
+          data-name="Monts des newsletters"
+          fill="transparent"
+          stroke="none"
+          points="
+            1052,444
+            974,429
+            906,424
+            853,435
+            814,407
+            786,359
+            737,339
+            669,319
+            641,284
+            606,265
+            582,243
+            552,204
+            542,176
+            558,146
+            605,116
+            673,99
+            733,91
+            781,72
+            821,56
+            850,62
+            890,78
+            950,112
+            1002,147
+            1089,206
+            1125,256
+            1140,304
+            1162,376
+            1148,421
+            1114,439
+            1080,449
+            1052,444
+          "
+        />
+
+         <!-- Village de la sécurité -->
+        <polygon
+          class="zone"
+          data-name="Village de la sécurité"
+          fill="transparent"
+          stroke="none"
+          points="
+            833,461
+            797,519
+            781,577
+            782,623
+            812,663
+            844,682
+            889,700
+            941,727
+            984,750
+            1042,760
+            1086,740
+            1134,696
+            1133,640
+            1105,600
+            1065,567
+            1037,527
+            1018,463
+            929,444
+            869,463
+            834,460
+          "
+        />
+
+         <!-- Plaine militante -->
+        <polygon
+          class="zone"
+          data-name="Plaine militante"
+          fill="transparent"
+          stroke="none"
+          points="
+            408,751
+            457,726
+            485,714
+            521,711
+            560,694
+            592,672
+            637,654
+            686,647
+            729,647
+            765,650
+            790,660
+            810,674
+            838,682
+            858,695
+            888,704
+            924,719
+            948,738
+            972,763
+            1000,791
+            1008,814
+            1001,836
+            988,854
+            944,876
+            890,887
+            854,906
+            806,910
+            777,898
+            749,896
+            705,914
+            652,962
+            600,990
+            552,998
+            506,988
+            466,986
+            434,974
+            408,939
+            385,896
+            349,872
+            318,835
+            322,794
+            346,772
+            376,758
+            408,752
+          "
+        />
+
+        <!-- Rives des podcasts -->
+        <polygon
+          class="zone"
+          data-name="Rives des podcasts"
+          fill="transparent"
+          stroke="none"
+          points="
+            1137,441
+            1088,466
+            1066,485
+            1058,531
+            1086,567
+            1130,598
+            1168,638
+            1244,650
+            1314,633
+            1406,610
+            1488,583
+            1558,554
+            1581,509
+            1569,465
+            1526,426
+            1496,387
+            1449,369
+            1384,366
+            1329,349
+            1254,345
+            1224,361
+            1182,397
+            1166,421
+            1137,442
+          "
+        />
+
+         <!-- Delta des vidéos -->
+        <polygon
+          class="zone"
+          data-name="Delta des vidéos"
+          fill="transparent"
+          stroke="none"
+          points="
+            1220,650
+            1308,634
+            1402,618
+            1505,582
+            1561,556
+            1636,548
+            1657,571
+            1686,606
+            1708,655
+            1729,740
+            1724,828
+            1689,888
+            1634,944
+            1540,1015
+            1457,1050
+            1402,1062
+            1329,1068
+            1237,1068
+            1160,1050
+            1108,1034
+            1029,996
+            974,968
+            950,930
+            966,864
+            1010,811
+            1073,748
+            1149,700
+            1220,651
+          "
+        />
+
+         <!-- Avant-poste des prédictions -->
+        <polygon
+          class="zone"
+          data-name="Avant-poste des prédictions"
+          fill="transparent"
+          stroke="none"
+          points="
+            1142,224
+            1160,272
+            1181,308
+            1229,330
+            1269,331
+            1333,334
+            1412,339
+            1465,330
+            1504,300
+            1542,262
+            1564,200
+            1562,134
+            1542,96
+            1505,68
+            1473,54
+            1416,46
+            1337,46
+            1272,55
+            1194,82
+            1146,127
+            1137,170
+            1141,224
+          "
+        />
+
+         <!-- Île des ressources -->
+        <polygon
+          class="zone"
+          data-name="Île des ressources"
+          fill="transparent"
+          stroke="none"
+          points="
+            1597,314
+            1577,263
+            1568,206
+            1572,148
+            1579,106
+            1608,79
+            1664,62
+            1723,59
+            1789,62
+            1848,86
+            1909,138
+            1971,215
+            2008,271
+            2017,335
+            2015,400
+            1995,451
+            1968,485
+            1928,516
+            1884,528
+            1825,517
+            1763,488
+            1699,437
+            1645,376
+            1597,315
+          "
+        />
+
+      </svg>
+
+      <!-- ============================================================
+           LABELS STATIQUES DES ZONES
+           Position fixe en pixels-image (repère 2048×1152).
+           Toujours visibles, fondent dans le décor.
+           Au survol du polygone correspondant, ils prennent un fond noir.
+           ============================================================ -->
+      <div class="zone-labels">
+        <div class="zone-static-label" data-zone="foret"        style="left: 430px; top: 470px;">Forêt des blogs</div>
+        <div class="zone-static-label" data-zone="monts"        style="left: 820px; top: 200px;">Monts des newsletters</div>
+        <div class="zone-static-label" data-zone="village"      style="left: 880px; top: 600px;">Village de la sécurité</div>
+        <div class="zone-static-label" data-zone="plaine"       style="left: 680px; top: 830px;">Plaine militante</div>
+        <div class="zone-static-label" data-zone="rives"        style="left: 1280px; top: 470px;">Rives des podcasts</div>
+        <div class="zone-static-label" data-zone="delta"        style="left: 1380px; top: 830px;">Delta des vidéos</div>
+        <div class="zone-static-label" data-zone="avant-poste"  style="left: 1350px; top: 100px;">Avant-poste des prédictions</div>
+        <div class="zone-static-label" data-zone="ile"          style="left: 1820px; top: 240px;">Île des ressources</div>
+      </div>
+
+      <!-- ============================================================
+           CONTENEUR DES SOURCES
+           Les cercles des sources sont injectés ici par map.js
+           à partir de data/ressources.json.
+           ============================================================ -->
+      <div class="map-sources" id="mapSources"></div>
+
+    </div>
+  </div>
+
+  <!-- Bulle d'info qui apparaît à côté d'une source au survol -->
+  <div class="source-tooltip" id="sourceTooltip">
+    <div class="source-tooltip-header">
+      <span class="source-tooltip-flag" id="sourceTooltipFlag"></span>
+      <span class="source-tooltip-title" id="sourceTooltipTitle"></span>
+    </div>
+    <div class="source-tooltip-desc" id="sourceTooltipDesc"></div>
+  </div>
+
+  <!-- Indication discrète en bas de l'écran -->
+  <div class="hint">Molette : zoom · Glisser : déplacer</div>
+
+  <!-- ============================================================
+       SCRIPTS : pan/zoom maison, pas de bibliothèque externe
+       ============================================================ -->
+  <script src="assets/js/nav.js"></script>
+  <script src="assets/js/map.js"></script>
+
+</body>
+</html>

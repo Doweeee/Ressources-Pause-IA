@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Éditeur de polygones — Pause IA</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #050608;
+      color: #f5f5f5;
+      font-family: monospace;
+      font-size: 13px;
+      overflow: hidden;
+    }
+    .toolbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(5,6,8,0.95);
+      border-bottom: 1px solid #f7931d;
+      padding: 12px 20px;
+      z-index: 100;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .toolbar button {
+      background: #f7931d;
+      color: #050608;
+      border: none;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .toolbar button:hover { background: #ffa94d; }
+    .toolbar input {
+      background: #111;
+      color: #f5f5f5;
+      border: 1px solid #444;
+      padding: 8px;
+      font-family: inherit;
+      width: 280px;
+    }
+    .info {
+      color: #888;
+      font-size: 12px;
+    }
+    .canvas-wrap {
+      margin-top: 50px;
+      width: 100vw;
+      height: calc(100vh - 50px);
+      overflow: auto;
+      background: #0a0a0a;
+    }
+    canvas {
+      display: block;
+      cursor: crosshair;
+    }
+    .output {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(5,6,8,0.97);
+      border-top: 1px solid #f7931d;
+      padding: 12px 20px;
+      max-height: 40vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .output pre {
+      color: #f7931d;
+      white-space: pre-wrap;
+      word-break: break-all;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .help {
+      color: #888;
+      font-size: 11px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <input type="text" id="zoneName" placeholder="Nom de la zone (ex: Forêt des blogs)" value="Forêt des blogs" />
+    <button onclick="undoPoint()">⤺ Annuler dernier point</button>
+    <button onclick="closePolygon()">✓ Fermer le polygone</button>
+    <button onclick="resetAll()">✕ Tout effacer</button>
+    <span class="info" id="counter">0 points</span>
+  </div>
+
+  <div class="canvas-wrap">
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <div class="output">
+    <div class="help">
+      <strong>Instructions :</strong> clique sur la carte pour ajouter un point. Le polygone se dessine en orange.
+      Quand tu as fini, clique sur "Fermer le polygone" → le code à coller dans index.html apparaît ici.
+    </div>
+    <pre id="result">Aucun polygone fermé pour l'instant.</pre>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const counter = document.getElementById('counter');
+    const result = document.getElementById('result');
+    const nameInput = document.getElementById('zoneName');
+
+    const MAP_WIDTH = 2048;
+    const MAP_HEIGHT = 1152;
+
+    canvas.width = MAP_WIDTH;
+    canvas.height = MAP_HEIGHT;
+
+    const img = new Image();
+    img.src = 'assets/images/map.png';
+
+    let points = [];
+    let closedPolygons = [];
+
+    img.onload = () => redraw();
+
+    function redraw() {
+      ctx.clearRect(0, 0, MAP_WIDTH, MAP_HEIGHT);
+      ctx.drawImage(img, 0, 0, MAP_WIDTH, MAP_HEIGHT);
+
+      // Polygones déjà fermés (en gris translucide)
+      ctx.strokeStyle = 'rgba(247, 147, 29, 0.5)';
+      ctx.lineWidth = 2;
+      closedPolygons.forEach(poly => {
+        ctx.beginPath();
+        poly.forEach((p, i) => {
+          if (i === 0) ctx.moveTo(p[0], p[1]);
+          else ctx.lineTo(p[0], p[1]);
+        });
+        ctx.closePath();
+        ctx.stroke();
+      });
+
+      // Polygone en cours (orange vif)
+      if (points.length > 0) {
+        ctx.strokeStyle = '#f7931d';
+        ctx.fillStyle = 'rgba(247, 147, 29, 0.15)';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        points.forEach((p, i) => {
+          if (i === 0) ctx.moveTo(p[0], p[1]);
+          else ctx.lineTo(p[0], p[1]);
+        });
+        ctx.stroke();
+        if (points.length > 2) {
+          ctx.fill();
+        }
+
+        // Points individuels
+        points.forEach((p, i) => {
+          ctx.fillStyle = i === 0 ? '#fff' : '#f7931d';
+          ctx.beginPath();
+          ctx.arc(p[0], p[1], 6, 0, Math.PI * 2);
+          ctx.fill();
+        });
+      }
+    }
+
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      // Conversion coordonnées écran → coordonnées image
+      const x = Math.round((e.clientX - rect.left) * (MAP_WIDTH / rect.width));
+      const y = Math.round((e.clientY - rect.top) * (MAP_HEIGHT / rect.height));
+      points.push([x, y]);
+      counter.textContent = points.length + ' points';
+      redraw();
+    });
+
+    function undoPoint() {
+      points.pop();
+      counter.textContent = points.length + ' points';
+      redraw();
+    }
+
+    function closePolygon() {
+      if (points.length < 3) {
+        alert('Il faut au moins 3 points pour un polygone.');
+        return;
+      }
+      const name = nameInput.value || 'Sans nom';
+      const pointsStr = points.map(p => `            ${p[0]},${p[1]}`).join('\n');
+      const html = `        <!-- ${name} -->
+        <polygon
+          class="zone"
+          data-name="${name}"
+          fill="transparent"
+          stroke="none"
+          points="
+${pointsStr}
+          "
+        />`;
+      result.textContent = html;
+      closedPolygons.push([...points]);
+      points = [];
+      counter.textContent = '0 points';
+      redraw();
+    }
+
+    function resetAll() {
+      if (!confirm('Tout effacer ?')) return;
+      points = [];
+      closedPolygons = [];
+      counter.textContent = '0 points';
+      result.textContent = 'Aucun polygone fermé pour l\'instant.';
+      redraw();
+    }
+  </script>
+
+</body>
+</html>

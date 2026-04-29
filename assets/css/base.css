@@ -1,0 +1,66 @@
+/* ============================================================
+   BASE.CSS — Styles communs à toutes les pages du site
+   Variables, reset, typographie, navigation
+   ============================================================ */
+
+/* ----- Variables de la charte PauseAI -----
+   Définies une fois ici, réutilisées partout. */
+:root {
+  --orange: #f7931d;
+  --orange-bright: #ffa94d;
+  --orange-dim: #c46a12;
+  --bg: #050608;          /* fond général : presque noir, très légèrement bleuté */
+  --text: #f5f5f5;
+  --text-dim: #888;
+}
+
+/* ----- Reset minimal ----- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+}
+
+/* ----- Barre de navigation supérieure -----
+   Discrète, transparente vers le bas, ne masque pas le contenu. */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  background: linear-gradient(to bottom, rgba(5,6,8,0.85), transparent);
+  pointer-events: none; /* on autorise les clics à travers, sauf sur les enfants */
+}
+.nav > * { pointer-events: auto; }
+
+.nav-logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+.nav-logo .orange { color: var(--orange); }
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--orange); }
