@@ -157,8 +157,8 @@ body { overflow: hidden; }
   z-index: 20;
 }
 .source-marker img {
-  width: 70%;
-  height: 70%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;

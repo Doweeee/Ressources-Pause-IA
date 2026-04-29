@@ -14,7 +14,8 @@
     "description": "Organisation mère internationale du mouvement Pause AI, voix mondiale de la cause.",
     "url": "https://pauseai.info/",
     "lang": "en",
-    "zone": "plaine"
+    "zone": "plaine",
+    "logo": "assets/images/logos/pauseai.svg"
   },
   {
     "id": "controlai",
@@ -22,7 +23,8 @@
     "description": "Organisation britannique militant pour une régulation contraignante des IA les plus puissantes.",
     "url": "https://controlai.com/",
     "lang": "en",
-    "zone": "plaine"
+    "zone": "plaine",
+    "logo": "assets/images/logos/controlai.png"
   },
   {
     "id": "fli",
@@ -62,7 +64,8 @@
     "description": "Actualités et nouvelles du mouvement français pour une pause sur l'IA.",
     "url": "https://pauseia.fr/fr/newsletters",
     "lang": "fr",
-    "zone": "monts"
+    "zone": "monts",
+    "logo": "assets/images/logos/pauseia_newsletter.svg"
   },
   {
     "id": "transformer",
