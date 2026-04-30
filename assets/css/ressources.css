@@ -5,6 +5,35 @@
    orange fine entre le titre et le contenu.
    ============================================================ */
 
+/* ============================================================
+   FOND PARALLAX
+   Image en position fixed, derrière tout le contenu, qui défile
+   à vitesse réduite via JS pendant le scroll.
+   ============================================================ */
+.parallax-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Hauteur supérieure à la fenêtre pour avoir de la marge pendant le défilement */
+  width: 100vw;
+  height: 200vh;
+  background-image: url('../images/logos/pauseialogo.png');
+  background-repeat: no-repeat;
+  background-position: 6% 12%;       /* aligné à gauche, légèrement décalé du bord */
+  background-size: 38vw auto;        /* taille relative à la largeur de la fenêtre */
+  opacity: 0.06;                     /* très discret pour ne pas gêner la lecture */
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+/* Désactivation sur mobile (le JS s'en charge aussi mais on bloque côté CSS) */
+@media (max-width: 900px) {
+  .parallax-bg {
+    display: none;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -14,6 +43,9 @@ body {
   padding-top: 80px;
   padding-bottom: 80px;
   min-height: 100vh;
+  /* Le contenu doit passer AU-DESSUS du fond parallax */
+  position: relative;
+  z-index: 1;
 }
 
 /* Conteneur principal : colonne fixe alignée à gauche */
@@ -22,6 +54,8 @@ body {
   margin-left: max(40px, calc((100vw - 820px) / 2));
   margin-right: 40px;
   padding: 0 20px;
+  position: relative;
+  z-index: 2;
 }
 
 /* ----- Hero du haut ----- */

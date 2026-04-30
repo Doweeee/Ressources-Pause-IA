@@ -22,6 +22,13 @@
 <body>
 
   <!-- ============================================================
+       FOND PARALLAX
+       Image fixée en arrière-plan, qui défile à vitesse réduite
+       pendant le scroll. Désactivé sur mobile pour la perf.
+       ============================================================ -->
+  <div class="parallax-bg" id="parallaxBg"></div>
+
+  <!-- ============================================================
        NAVIGATION
        ============================================================ -->
   <nav class="nav">
@@ -55,7 +62,7 @@
          ============================================================ -->
     <section class="res-section">
       <div class="res-section-header">
-        <h2><img class="section-logo" src="assets/images/logos/pauseia.svg" alt="Pause IA" />Ressources Pause IA</h2>
+        <h2><img class="section-logo" src="assets/images/logos/pauseialogo.png" alt="Pause IA" />Ressources Pause IA</h2>
       </div>
       <div class="res-section-body">
         <ul class="res-list">
@@ -258,6 +265,40 @@
     </section>
 
   </main>
+
+  <!-- ============================================================
+       SCRIPT PARALLAX
+       Fait défiler le fond à 30% de la vitesse de scroll réelle.
+       Désactivé sur mobile (largeur < 900px).
+       ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+      if (window.innerWidth < 900) return;
+
+      const bg = document.getElementById('parallaxBg');
+      if (!bg) return;
+
+      let lastScroll = 0;
+      let ticking = false;
+
+      function updateParallax() {
+        // Décale le fond vers le HAUT à 30% de la vitesse de scroll.
+        // Le négatif est important : quand on scrolle vers le bas (lastScroll
+        // augmente), le fond doit remonter pour donner l'illusion de profondeur.
+        bg.style.transform = `translateY(${-lastScroll * 0.3}px)`;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        lastScroll = window.scrollY;
+        if (!ticking) {
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+  </script>
 
 </body>
 </html>
