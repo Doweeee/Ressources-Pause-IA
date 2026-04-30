@@ -63,7 +63,7 @@ body {
 
 /* ----- Zone du titre (haut de l'encadré) ----- */
 .res-section-header {
-  background: #2a2a2a;
+  background: #1a1a1a;
   padding: 18px 24px;
   border-bottom: 1px solid var(--orange);
 }
@@ -83,6 +83,13 @@ body {
   font-size: 28px;
   line-height: 1;
 }
+/* Logo en remplacement d'émoji : même taille apparente (~28px) */
+.res-section-header .section-logo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
 .res-section-header .section-intro {
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
@@ -96,7 +103,7 @@ body {
 
 /* ----- Zone du contenu (bas de l'encadré) ----- */
 .res-section-body {
-  background: #e8e8e8;
+  background: #2e2e2e;
   padding: 22px 28px;
 }
 
@@ -107,9 +114,11 @@ body {
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: #1a1a1a;
+  color: #ffffff;
   margin-top: 22px;
   margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(247, 147, 29, 0.35);
 }
 /* Pas de marge en haut pour le premier sous-titre d'une section */
 .res-section-body > .res-subtitle:first-child {
@@ -130,7 +139,7 @@ body {
   display: flex;
   gap: 14px;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .res-entry:last-child {
   border-bottom: none;
@@ -166,13 +175,13 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 16px;
-  color: var(--orange-dim);    /* #c46a12 : orange foncé pour bon contraste sur gris clair */
+  color: var(--orange);
   text-decoration: none;
   transition: color 0.18s;
   line-height: 1.4;
 }
 .res-title:hover {
-  color: var(--orange);
+  color: var(--orange-bright);
   text-decoration: underline;
 }
 .res-desc {
@@ -181,17 +190,17 @@ body {
   font-weight: 300;
   font-size: 15px;
   line-height: 1.55;
-  color: #1a1a1a;             /* description en quasi-noir sur fond gris clair */
+  color: #ffffff;
   margin-left: 4px;
 }
 .res-desc::before {
   content: " — ";
-  color: #666;
+  color: rgba(255, 255, 255, 0.4);
 }
 .res-date {
   display: inline;
   font-style: italic;
-  color: #666;
+  color: rgba(255, 255, 255, 0.5);
   font-size: 14px;
   margin-left: 4px;
 }
