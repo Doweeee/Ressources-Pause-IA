@@ -10,7 +10,7 @@
   },
   {
     "id": "pauseai-global",
-    "title": "PauseAI Global",
+    "title": "Pause AI Global",
     "description": "Organisation mère internationale du mouvement Pause AI, voix mondiale de la cause.",
     "url": "https://pauseai.info/",
     "lang": "en",
@@ -285,7 +285,7 @@
   },
   {
     "id": "pauseia-blog",
-    "title": "PauseIA — Substack",
+    "title": "Pause IA - Substack",
     "description": "Blog français du mouvement Pause IA : analyses et prises de position.",
     "url": "https://pauseia.substack.com/",
     "lang": "fr",
@@ -294,8 +294,8 @@
   },
   {
     "id": "pauseai-blog",
-    "title": "PauseAI — Substack",
-    "description": "Blog international du mouvement PauseAI : actualités et essais sur la pause de l'IA.",
+    "title": "Pause AI - Substack",
+    "description": "Blog international du mouvement Pause AI : actualités et essais sur la pause de l'IA.",
     "url": "https://pauseai.substack.com/",
     "lang": "en",
     "zone": "foret",

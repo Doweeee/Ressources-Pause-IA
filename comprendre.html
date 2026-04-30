@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pause IA — Comprendre les risques</title>
+
+  <!-- Polices Google Fonts (charte PauseAI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto+Slab:wght@300;700&family=Saira+Condensed:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS de base partagé (variables, navigation) -->
+  <link rel="stylesheet" href="assets/css/base.css" />
+
+  <style>
+    /* Mise en page propre à cette page :
+       - body sans scroll
+       - iframe qui occupe tout l'espace sous la barre de nav */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .content-frame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: var(--bg);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       NAVIGATION : barre supérieure identique à la carte
+       ============================================================ -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <a href="index.html" style="color: inherit; text-decoration: none;">
+        <span>PAUSE</span><span class="orange">IA</span>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="comprendre.html">Comprendre</a></li>
+      <li><a href="ressources.html">Ressources</a></li>
+      <li><a href="about.html">À propos</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       IFRAME : charge l'arbre des risques existentiels
+       Le contenu de "comprendre/" provient du repo Arbre-existentiel.
+       ============================================================ -->
+  <iframe
+    class="content-frame"
+    src="comprendre/index.html"
+    title="Comprendre les risques existentiels"
+  ></iframe>
+
+  <!-- Mise en évidence du lien actif dans la nav -->
+  <script src="assets/js/nav.js"></script>
+
+</body>
+</html>
