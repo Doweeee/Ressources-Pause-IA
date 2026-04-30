@@ -1,7 +1,8 @@
 /* ============================================================
    RESSOURCES.CSS — Styles de la page Ressources
-   Structure : colonne unique alignée à gauche, sections empilées,
-   chaque entrée avec drapeau(x) + titre orange + description.
+   Chaque section dans un encadré : bordure orange, titre sur fond
+   gris foncé, contenu sur fond gris clair lumineux, séparation
+   orange fine entre le titre et le contenu.
    ============================================================ */
 
 body {
@@ -23,7 +24,7 @@ body {
   padding: 0 20px;
 }
 
-/* Hero du haut : titre + sous-titre */
+/* ----- Hero du haut ----- */
 .res-hero {
   margin-bottom: 48px;
   padding-bottom: 32px;
@@ -49,36 +50,54 @@ body {
   color: var(--text-dim);
 }
 
-/* Section : émoji + titre */
+/* ============================================================
+   ENCADRÉ DE SECTION
+   Bordure orange, deux zones : titre (gris foncé) + contenu (gris clair)
+   ============================================================ */
 .res-section {
-  margin-top: 56px;
+  margin-top: 40px;
+  border: 1.5px solid var(--orange);
+  border-radius: 6px;
+  overflow: hidden;
 }
-.res-section h2 {
+
+/* ----- Zone du titre (haut de l'encadré) ----- */
+.res-section-header {
+  background: #2a2a2a;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--orange);
+}
+.res-section-header h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
   font-size: 22px;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   color: var(--orange);
-  margin-bottom: 8px;
+  margin: 0;
   display: flex;
   align-items: center;
   gap: 12px;
 }
-.res-section .section-emoji {
+.res-section-header .section-emoji {
   font-size: 28px;
   line-height: 1;
 }
-.res-section .section-intro {
+.res-section-header .section-intro {
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
   font-style: italic;
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
-  color: var(--text-dim);
-  margin-bottom: 24px;
-  padding-left: 16px;
-  border-left: 2px solid rgba(247, 147, 29, 0.4);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+/* ----- Zone du contenu (bas de l'encadré) ----- */
+.res-section-body {
+  background: #e8e8e8;
+  padding: 22px 28px;
 }
 
 /* Sous-titre (ex : "Pour démarrer", "Pour aller plus loin") */
@@ -88,13 +107,20 @@ body {
   font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--text);
-  margin-top: 28px;
-  margin-bottom: 14px;
-  opacity: 0.85;
+  color: #1a1a1a;
+  margin-top: 22px;
+  margin-bottom: 12px;
+}
+/* Pas de marge en haut pour le premier sous-titre d'une section */
+.res-section-body > .res-subtitle:first-child {
+  margin-top: 0;
+}
+/* Pareil si la première chose est une liste (pas de sous-titre) */
+.res-section-body > .res-list:first-child {
+  margin-top: 0;
 }
 
-/* Liste d'entrées */
+/* ----- Liste d'entrées ----- */
 .res-list {
   list-style: none;
   padding: 0;
@@ -102,15 +128,19 @@ body {
 }
 .res-entry {
   display: flex;
-  gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 .res-entry:last-child {
   border-bottom: none;
+  padding-bottom: 0;
+}
+.res-entry:first-child {
+  padding-top: 0;
 }
 
-/* Bloc des drapeaux à gauche */
+/* Bloc des drapeaux à gauche : pas d'encadré, juste l'image */
 .res-flags {
   display: flex;
   gap: 4px;
@@ -121,11 +151,12 @@ body {
   width: 22px;
   height: auto;
   display: block;
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
 }
 
-/* Bloc texte : titre + description + date */
+/* Bloc texte */
 .res-content {
   flex: 1;
   min-width: 0;
@@ -135,13 +166,13 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
   font-size: 16px;
-  color: var(--orange);
+  color: var(--orange-dim);    /* #c46a12 : orange foncé pour bon contraste sur gris clair */
   text-decoration: none;
   transition: color 0.18s;
   line-height: 1.4;
 }
 .res-title:hover {
-  color: var(--orange-bright);
+  color: var(--orange);
   text-decoration: underline;
 }
 .res-desc {
@@ -150,34 +181,22 @@ body {
   font-weight: 300;
   font-size: 15px;
   line-height: 1.55;
-  color: var(--text);
+  color: #1a1a1a;             /* description en quasi-noir sur fond gris clair */
   margin-left: 4px;
 }
 .res-desc::before {
   content: " — ";
-  color: var(--text-dim);
+  color: #666;
 }
 .res-date {
   display: inline;
   font-style: italic;
-  color: var(--text-dim);
+  color: #666;
   font-size: 14px;
   margin-left: 4px;
 }
 
-/* Séparateur entre sections (équivalent du ━━━━━ de ta liste) */
-.res-divider {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    rgba(247, 147, 29, 0.4),
-    rgba(247, 147, 29, 0.05)
-  );
-  border: none;
-  margin: 56px 0 0;
-}
-
-/* Responsive : sur mobile, conteneur en pleine largeur avec marge */
+/* ----- Responsive ----- */
 @media (max-width: 900px) {
   .res-container {
     margin-left: 20px;
@@ -186,5 +205,11 @@ body {
   }
   .res-hero h1 {
     font-size: 30px;
+  }
+  .res-section-header {
+    padding: 16px 20px;
+  }
+  .res-section-body {
+    padding: 18px 22px;
   }
 }
