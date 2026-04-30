@@ -45,6 +45,15 @@ body {
   font-weight: 900;
   font-size: 20px;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-logo .logo-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 .nav-logo .orange { color: var(--orange); }
 

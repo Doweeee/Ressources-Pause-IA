@@ -10,7 +10,7 @@
   },
   {
     "id": "pauseai-global",
-    "title": "Pause AI Global",
+    "title": "PauseAI Global",
     "description": "Organisation mère internationale du mouvement Pause AI, voix mondiale de la cause.",
     "url": "https://pauseai.info/",
     "lang": "en",
@@ -40,7 +40,8 @@
     "description": "Centre français pour la sécurité de l'IA : recherche et enseignement sur la prévention des risques majeurs.",
     "url": "https://www.securite-ia.fr/",
     "lang": "fr",
-    "zone": "village"
+    "zone": "village",
+    "logo": "assets/images/logos/cesia.svg"
   },
   {
     "id": "cais",
@@ -81,7 +82,8 @@
     "description": "Newsletter de ControlAI sur les développements liés à la régulation et à la sécurité de l'IA.",
     "url": "https://controlai.news/",
     "lang": "en",
-    "zone": "monts"
+    "zone": "monts",
+    "logo": "assets/images/logos/controlai.png"
   },
   {
     "id": "contre-courant",
@@ -97,7 +99,8 @@
     "description": "Newsletter du Centre pour la Sécurité de l'IA : actualités françaises de la recherche et de la prévention.",
     "url": "https://cesiafr.substack.com/",
     "lang": "fr",
-    "zone": "monts"
+    "zone": "monts",
+    "logo": "assets/images/logos/cesia.svg"
   },
   {
     "id": "cais-newsletter",
@@ -177,7 +180,8 @@
     "description": "Chaîne YouTube française dédiée aux futurs technologiques et aux risques liés à l'IA.",
     "url": "https://m.youtube.com/@LeFuturologue",
     "lang": "fr",
-    "zone": "delta"
+    "zone": "delta",
+    "logo": "assets/images/logos/lefuturologue.jpg"
   },
   {
     "id": "the-flares",
@@ -185,7 +189,8 @@
     "description": "Chaîne YouTube française sur les risques existentiels et les futurs lointains.",
     "url": "https://www.youtube.com/@the-flares",
     "lang": "fr",
-    "zone": "delta"
+    "zone": "delta",
+    "logo": "assets/images/logos/theflares.jpg"
   },
   {
     "id": "mr-phi",
@@ -201,7 +206,8 @@
     "description": "Vidéos animées rigoureuses sur la rationalité, la sécurité de l'IA et les risques existentiels.",
     "url": "https://www.youtube.com/@RationalAnimations/videos",
     "lang": "en",
-    "zone": "delta"
+    "zone": "delta",
+    "logo": "assets/images/logos/rationalanimations.jpg"
   },
   {
     "id": "robert-miles",
@@ -249,7 +255,8 @@
     "description": "Podcast français du Futurologue : entretiens et analyses sur les futurs technologiques.",
     "url": "https://www.youtube.com/@LeFuturologuePodcast",
     "lang": "fr",
-    "zone": "rives"
+    "zone": "rives",
+    "logo": "assets/images/logos/lefuturologue.jpg"
   },
   {
     "id": "the-flares-podcast",
@@ -257,7 +264,8 @@
     "description": "Podcast français consacré aux risques existentiels et aux grandes questions du futur.",
     "url": "https://www.youtube.com/@the-flares/podcasts",
     "lang": "fr",
-    "zone": "rives"
+    "zone": "rives",
+    "logo": "assets/images/logos/theflares.jpg"
   },
   {
     "id": "fli-podcast",
@@ -285,7 +293,7 @@
   },
   {
     "id": "pauseia-blog",
-    "title": "Pause IA - Substack",
+    "title": "PauseIA — Substack",
     "description": "Blog français du mouvement Pause IA : analyses et prises de position.",
     "url": "https://pauseia.substack.com/",
     "lang": "fr",
@@ -294,8 +302,8 @@
   },
   {
     "id": "pauseai-blog",
-    "title": "Pause AI - Substack",
-    "description": "Blog international du mouvement Pause AI : actualités et essais sur la pause de l'IA.",
+    "title": "PauseAI — Substack",
+    "description": "Blog international du mouvement PauseAI : actualités et essais sur la pause de l'IA.",
     "url": "https://pauseai.substack.com/",
     "lang": "en",
     "zone": "foret",
