@@ -386,7 +386,7 @@
     // Initial position: top of viewport (as before), but no longer pinned —
     // the user can drag it freely (horizontally AND vertically).
     bbl.style.left=lx+'px';
-    bbl.style.top='8px';
+    bbl.style.top='70px';
   }
   function closeBubble(){bbl.className='bbl';selN=null;}
 
@@ -398,7 +398,7 @@
   document.addEventListener('mousemove',function(e){
     if(!drag)return;
     bbl.style.left=Math.max(0,Math.min(W-bbl.offsetWidth,e.clientX-dragOx))+'px';
-    bbl.style.top =Math.max(0,Math.min(H-bbl.offsetHeight,e.clientY-dragOy))+'px';
+    bbl.style.top =Math.max(70,Math.min(H-bbl.offsetHeight,e.clientY-dragOy))+'px';
   });
   document.addEventListener('mouseup',function(){drag=false;});
 
