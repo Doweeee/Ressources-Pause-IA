@@ -64,3 +64,11 @@ body {
   transition: color 0.2s;
 }
 .nav-links a:hover { color: var(--orange); }
+
+/* Onglet Carte : toujours en orange (mise en avant de la page principale) */
+.nav-links a.nav-carte {
+  color: var(--orange);
+}
+.nav-links a.nav-carte:hover {
+  color: var(--orange-bright);
+}

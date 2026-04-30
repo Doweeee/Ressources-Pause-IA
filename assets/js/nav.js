@@ -1,18 +1,22 @@
 /* ============================================================
    NAV.JS — Logique de la barre de navigation
-   Pour l'instant : rien de particulier. Réservé pour plus tard
-   (menu mobile, indication de la page active, etc.).
+   Met en évidence le lien correspondant à la page courante.
+   L'onglet "Carte" garde sa couleur orange permanente (gérée en CSS).
    ============================================================ */
 
 (function () {
   'use strict';
 
-  // Marquer le lien de la page courante comme "actif"
-  // (utile quand tu seras sur ressources.html ou vulgarisation.html)
+  // Récupère le nom de la page courante (par exemple "ressources.html")
   const currentPath = window.location.pathname.split('/').pop() || 'index.html';
   const links = document.querySelectorAll('.nav-links a');
+
   links.forEach((link) => {
-    if (link.getAttribute('href') === currentPath) {
+    const href = link.getAttribute('href');
+    // Ne pas toucher à l'onglet Carte qui a déjà sa couleur permanente en CSS
+    if (link.classList.contains('nav-carte')) return;
+    // Marquer le lien actif en orange si c'est la page courante
+    if (href === currentPath) {
       link.style.color = 'var(--orange)';
     }
   });
