@@ -117,8 +117,6 @@ body {
   color: #ffffff;
   margin-top: 22px;
   margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(247, 147, 29, 0.35);
 }
 /* Pas de marge en haut pour le premier sous-titre d'une section */
 .res-section-body > .res-subtitle:first-child {
@@ -127,6 +125,24 @@ body {
 /* Pareil si la première chose est une liste (pas de sous-titre) */
 .res-section-body > .res-list:first-child {
   margin-top: 0;
+}
+
+/* ----- Sous-bloc d'une section -----
+   Regroupe un sous-titre + sa liste sur un fond légèrement plus
+   foncé que la section, avec des séparateurs orange fins en haut
+   et en bas. Sert à mieux distinguer les regroupements thématiques. */
+.res-subgroup {
+  background: #242424;
+  padding: 18px 22px;
+  margin: 22px -28px;          /* étend le sous-bloc jusqu'aux bords de la section */
+  border-top: 1px solid rgba(247, 147, 29, 0.45);
+  border-bottom: 1px solid rgba(247, 147, 29, 0.45);
+}
+.res-subgroup > .res-subtitle {
+  margin-top: 0;
+}
+.res-subgroup > .res-list:last-child {
+  margin-bottom: 0;
 }
 
 /* ----- Liste d'entrées ----- */
