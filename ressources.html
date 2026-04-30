@@ -283,10 +283,10 @@
       let ticking = false;
 
       function updateParallax() {
-        // Décale le fond vers le HAUT à 30% de la vitesse de scroll.
-        // Le négatif est important : quand on scrolle vers le bas (lastScroll
-        // augmente), le fond doit remonter pour donner l'illusion de profondeur.
-        bg.style.transform = `translateY(${-lastScroll * 0.3}px)`;
+        // Décale le fond vers le HAUT à 15% de la vitesse de scroll.
+        // Plus le coefficient est petit, plus le logo monte lentement
+        // (effet de profondeur plus marqué).
+        bg.style.transform = `translateY(${-lastScroll * 0.15}px)`;
         ticking = false;
       }
 

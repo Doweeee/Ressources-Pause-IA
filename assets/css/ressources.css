@@ -19,7 +19,7 @@
   height: 200vh;
   background-image: url('../images/logos/pauseialogo.png');
   background-repeat: no-repeat;
-  background-position: 6% 12%;       /* aligné à gauche, légèrement décalé du bord */
+  background-position: 6% 35%;       /* aligné à gauche, plus bas qu'avant */
   background-size: 38vw auto;        /* taille relative à la largeur de la fenêtre */
   opacity: 0.06;                     /* très discret pour ne pas gêner la lecture */
   pointer-events: none;
