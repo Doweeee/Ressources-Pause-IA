@@ -169,8 +169,8 @@ body { overflow: hidden; }
    et qui paraissent trop petits à 90%. Permet au logo de remplir totalement
    le cercle (et de déborder un peu pour rendre l'élément visuel plus grand). */
 .source-marker.large img {
-  width: 140%;
-  height: 140%;
+  width: 150%;
+  height: 150%;
 }
 
 /* Fallback quand pas de logo : texte sur fond blanc.

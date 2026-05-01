@@ -121,7 +121,8 @@
     "description": "Prévisions de Leopold Aschenbrenner sur l'AGI et la superintelligence d'ici 2027-2030 (juin 2024).",
     "url": "https://situational-awareness.ai/",
     "lang": "en",
-    "zone": "avant-poste"
+    "zone": "avant-poste",
+    "fallback_text": "Awareness"
   },
   {
     "id": "ai-2027",
