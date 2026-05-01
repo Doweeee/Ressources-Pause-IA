@@ -1,7 +1,7 @@
 /* ============================================================
    NAV.JS — Logique de la barre de navigation
-   Met en évidence le lien correspondant à la page courante.
-   L'onglet "Carte" garde sa couleur orange permanente (gérée en CSS).
+   Met en évidence l'onglet correspondant à la page courante via
+   la classe .is-active (style défini dans base.css).
    ============================================================ */
 
 (function () {
@@ -13,11 +13,8 @@
 
   links.forEach((link) => {
     const href = link.getAttribute('href');
-    // Ne pas toucher à l'onglet Carte qui a déjà sa couleur permanente en CSS
-    if (link.classList.contains('nav-carte')) return;
-    // Marquer le lien actif en orange si c'est la page courante
     if (href === currentPath) {
-      link.style.color = 'var(--orange)';
+      link.classList.add('is-active');
     }
   });
 })();
