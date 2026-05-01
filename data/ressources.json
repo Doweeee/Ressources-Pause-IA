@@ -78,7 +78,7 @@
     "url": "https://www.transformernews.ai/",
     "lang": "en",
     "zone": "monts",
-    "logo": "assets/images/logos/transormer.png"
+    "logo": "assets/images/logos/transformer.png"
   },
   {
     "id": "controlai-news",
@@ -112,7 +112,8 @@
     "description": "Newsletter du Center for AI Safety : synthèse régulière sur les risques catastrophiques de l'IA.",
     "url": "https://newsletter.safe.ai/",
     "lang": "en",
-    "zone": "monts"
+    "zone": "monts",
+    "logo": "assets/images/logos/cais.png"
   },
   {
     "id": "situational-awareness",
@@ -128,7 +129,8 @@
     "description": "Scénario d'impact d'IAs surhumaines sur la décennie, par Daniel Kokotajlo et al. (avril 2025).",
     "url": "https://ai-2027.com/",
     "lang": "en",
-    "zone": "avant-poste"
+    "zone": "avant-poste",
+    "fallback_text": "2027"
   },
   {
     "id": "intelligence-curse",
@@ -137,7 +139,8 @@
     "url": "https://intelligence-curse.ai/",
     "lang": "en",
     "zone": "avant-poste",
-    "logo": "assets/images/logos/intelligencecurse.jpg"
+    "logo": "assets/images/logos/intelligencecurse.jpg",
+    "logo_size": "large"
   },
   {
     "id": "miri-governance",
@@ -173,7 +176,8 @@
     "url": "https://aisafety.info/",
     "lang": "en",
     "zone": "ile",
-    "logo": "assets/images/logos/aisafetyinfo.png"
+    "logo": "assets/images/logos/aisafetyinfo.png",
+    "logo_size": "large"
   },
   {
     "id": "the-compendium",
@@ -182,7 +186,8 @@
     "url": "https://www.thecompendium.ai/",
     "lang": "en",
     "zone": "ile",
-    "logo": "assets/images/logos/compendium.png"
+    "logo": "assets/images/logos/compendium.png",
+    "logo_size": "large"
   },
   {
     "id": "le-futurologue",

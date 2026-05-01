@@ -317,9 +317,9 @@
      RENDU DES SOURCES
      ============================================================ */
 
-  function flagHTML(lang) {
-    if (lang === 'fr') return '<img src="assets/images/flags/fr.svg" alt="FR" class="source-tooltip-flag-img">';
-    if (lang === 'en' || lang === 'gb') return '<img src="assets/images/flags/gb.svg" alt="EN" class="source-tooltip-flag-img">';
+  function flagEmoji(lang) {
+    if (lang === 'fr') return '🇫🇷';
+    if (lang === 'en' || lang === 'gb') return '🇬🇧';
     return '';
   }
 
@@ -356,13 +356,22 @@
       if (src.x == null || src.y == null) return; // skip si pas placée
       const marker = document.createElement('a');
       marker.className = 'source-marker';
+      // Si la source a un logo_size = 'large', on ajoute la classe pour
+      // que le CSS applique le ratio plus grand (logo qui déborde du cercle).
+      if (src.logo_size === 'large') {
+        marker.classList.add('large');
+      }
       marker.href = src.url || '#';
       marker.target = '_blank';
       marker.rel = 'noopener';
       marker.style.left = src.x + 'px';
       marker.style.top = src.y + 'px';
 
-      // Logo si fourni, sinon initiales
+      // Texte du fallback : soit fallback_text personnalisé, soit les 2
+      // premières lettres du titre.
+      const fallbackText = src.fallback_text || (src.title || '?').slice(0, 2);
+
+      // Logo si fourni, sinon texte de fallback
       if (src.logo) {
         const img = document.createElement('img');
         img.src = src.logo;
@@ -372,14 +381,14 @@
           img.remove();
           const fb = document.createElement('span');
           fb.className = 'source-marker-fallback';
-          fb.textContent = (src.title || '?').slice(0, 2);
+          fb.textContent = fallbackText;
           marker.appendChild(fb);
         };
         marker.appendChild(img);
       } else {
         const fb = document.createElement('span');
         fb.className = 'source-marker-fallback';
-        fb.textContent = (src.title || '?').slice(0, 2);
+        fb.textContent = fallbackText;
         marker.appendChild(fb);
       }
 
@@ -410,7 +419,7 @@
   function showTooltip(src, marker) {
     tooltipTitle.textContent = src.title || '';
     tooltipDesc.textContent = src.description || '';
-    tooltipFlag.innerHTML = flagHTML(src.lang);
+    tooltipFlag.textContent = flagEmoji(src.lang);
 
     // Positionner à droite du marqueur, ou à gauche si pas la place
     const rect = marker.getBoundingClientRect();

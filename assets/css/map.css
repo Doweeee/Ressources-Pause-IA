@@ -157,21 +157,33 @@ body { overflow: hidden; }
   z-index: 20;
 }
 .source-marker img {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   object-fit: contain;
   user-select: none;
   -webkit-user-drag: none;
   pointer-events: none;
 }
 
-/* Fallback quand pas de logo : initiales sur fond gris */
+/* Variante "large" : pour les logos qui ont beaucoup d'espace blanc autour
+   et qui paraissent trop petits à 90%. Permet au logo de remplir totalement
+   le cercle (et de déborder un peu pour rendre l'élément visuel plus grand). */
+.source-marker.large img {
+  width: 140%;
+  height: 140%;
+}
+
+/* Fallback quand pas de logo : texte sur fond blanc.
+   Taille adaptée pour 2 à 4 caractères dans un cercle de 50px. */
 .source-marker-fallback {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 16px;
+  font-size: 14px;
   color: #050608;
   text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  letter-spacing: -0.5px;
 }
 
 /* ============================================================
@@ -236,11 +248,4 @@ body { overflow: hidden; }
   text-transform: uppercase;
   pointer-events: none;
   z-index: 10;
-}
-.source-tooltip-flag-img {
-  width: 22px;
-  height: auto;
-  display: block;
-  border-radius: 2px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
