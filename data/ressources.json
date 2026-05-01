@@ -195,7 +195,7 @@
     "id": "le-futurologue",
     "title": "Le Futurologue",
     "description": "Chaîne YouTube française dédiée aux futurs technologiques et aux risques liés à l'IA.",
-    "url": "https://m.youtube.com/@LeFuturologue",
+    "url": "https://www.youtube.com/@LeFuturologue",
     "lang": "fr",
     "zone": "delta",
     "logo": "assets/images/logos/lefuturologue.jpg"
@@ -276,7 +276,7 @@
     "id": "le-futurologue-podcast",
     "title": "Le Futurologue (Podcast)",
     "description": "Podcast français du Futurologue : entretiens et analyses sur les futurs technologiques.",
-    "url": "https://www.youtube.com/@LeFuturologuePodcast",
+    "url": "https://www.youtube.com/@LeFuturologue/podcasts",
     "lang": "fr",
     "zone": "rives",
     "logo": "assets/images/logos/lefuturologue.jpg"
