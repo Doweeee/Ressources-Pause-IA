@@ -95,7 +95,8 @@
     "description": "Newsletter de Romain Deléglise : analyses critiques sur l'IA et ses enjeux sociaux.",
     "url": "https://romaindeleglise.substack.com/",
     "lang": "fr",
-    "zone": "monts"
+    "zone": "monts",
+    "fallback_text": "À.C."
   },
   {
     "id": "cesia-newsletter",
