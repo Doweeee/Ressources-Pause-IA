@@ -81,3 +81,41 @@ body {
 .nav-links a.nav-carte:hover {
   color: var(--orange-bright);
 }
+/* ============================================================
+   BULLES DE SOUS-TITRES AU SURVOL DES ONGLETS
+   Apparaissent sous chaque onglet quand on le survole.
+   Le sous-titre est défini via l'attribut data-subtitle sur le <a>.
+   ============================================================ */
+.nav-links li {
+  position: relative;
+}
+.nav-links a {
+  position: relative;
+}
+.nav-links a[data-subtitle]::after {
+  content: attr(data-subtitle);
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-4px);
+  background: rgba(20, 20, 20, 0.97);
+  color: #ffffff;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  text-transform: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(247, 147, 29, 0.25);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  z-index: 200;
+}
+.nav-links a[data-subtitle]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
