@@ -217,6 +217,15 @@ body { overflow: hidden; }
 .source-tooltip-flag {
   font-size: 16px;
   line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.source-tooltip-flag-img {
+  width: 22px;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 .source-tooltip-title {
   font-family: 'Montserrat', sans-serif;

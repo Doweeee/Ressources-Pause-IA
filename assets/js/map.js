@@ -317,9 +317,9 @@
      RENDU DES SOURCES
      ============================================================ */
 
-  function flagEmoji(lang) {
-    if (lang === 'fr') return '🇫🇷';
-    if (lang === 'en' || lang === 'gb') return '🇬🇧';
+  function flagHTML(lang) {
+    if (lang === 'fr') return '<img src="assets/images/flags/fr.svg" alt="FR" class="source-tooltip-flag-img">';
+    if (lang === 'en' || lang === 'gb') return '<img src="assets/images/flags/gb.svg" alt="EN" class="source-tooltip-flag-img">';
     return '';
   }
 
@@ -419,7 +419,7 @@
   function showTooltip(src, marker) {
     tooltipTitle.textContent = src.title || '';
     tooltipDesc.textContent = src.description || '';
-    tooltipFlag.textContent = flagEmoji(src.lang);
+    tooltipFlag.innerHTML = flagHTML(src.lang);
 
     // Positionner à droite du marqueur, ou à gauche si pas la place
     const rect = marker.getBoundingClientRect();
