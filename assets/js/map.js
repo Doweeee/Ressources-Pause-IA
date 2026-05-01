@@ -152,7 +152,7 @@
       const margin = 0.92;
       scale = Math.min((vw / MAP_WIDTH) * margin, (vh / MAP_HEIGHT) * margin);
       x = (vw - MAP_WIDTH * scale) / 2;
-      y = (vh - MAP_HEIGHT * scale) / 2;
+      y = (vh - MAP_HEIGHT * scale) / 2 + 30;  /* +30px pour libérer l'espace de la nav */
       apply();
     }, 150);
   });

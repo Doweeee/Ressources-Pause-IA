@@ -31,7 +31,7 @@
       var margin = 0.92;
       var scale = Math.min((vw / MAP_W) * margin, (vh / MAP_H) * margin);
       var x = (vw - MAP_W * scale) / 2;
-      var y = (vh - MAP_H * scale) / 2;
+      var y = (vh - MAP_H * scale) / 2 + 30;  /* +30px pour libérer l'espace de la nav */
       // On expose ces valeurs pour map.js (qui les utilisera pour Panzoom)
       window.__mapInitialFit = { scale: scale, x: x, y: y };
       // Et on injecte la transform en CSS pour qu'elle s'applique au rendu initial
