@@ -113,7 +113,7 @@ body {
 .nav-links a[data-subtitle]::after {
   content: attr(data-subtitle);
   position: absolute;
-  top: calc(100% + 6px);                /* plus proche de l'onglet (14px → 6px) */
+  top: calc(100% + 9px);                /* plus proche de l'onglet (14px → 9px) */
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
   /* Effet "bulle d'eau" : dégradé sombre avec reflet brillant en haut */
